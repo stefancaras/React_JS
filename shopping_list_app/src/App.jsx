@@ -12,7 +12,7 @@ const App = () => {
   const [items, setItems] = useState([]);
   const [inputValue, setInputValue] = useState("");
 
-  const btnHandler = () => {
+  const btnAddHandler = () => {
     if (inputValue !== "") {
       let array = inputValue.split(",");
       array = array.map(
@@ -37,6 +37,10 @@ const App = () => {
     setItems([...unselected, ...selected]);
   };
 
+  const newListHandler = () => {
+    window.confirm("Are you sure?") && setItems([]);
+  };
+
   return (
     <div className="container">
       <h1 className="align-c">Shopping List</h1>
@@ -44,14 +48,14 @@ const App = () => {
         <input
           value={inputValue}
           onChange={(event) => setInputValue(event.target.value)}
-          onKeyDown={(event) => event.key === "Enter" && btnHandler()}
+          onKeyDown={(event) => event.key === "Enter" && btnAddHandler()}
           className="add-item-input"
           placeholder="Add an item..."
         />
         <FontAwesomeIcon
           className="hover-pointer"
           icon={faPlus}
-          onClick={() => btnHandler()}
+          onClick={() => btnAddHandler()}
         />
       </div>
       <div className="btn-div">
@@ -59,7 +63,7 @@ const App = () => {
           Sort
           <FontAwesomeIcon icon={faCheckCircle} />
         </button>
-        <button onClick={() => setItems([])}>
+        <button onClick={newListHandler}>
           New List
           <FontAwesomeIcon icon={faList} />
         </button>
