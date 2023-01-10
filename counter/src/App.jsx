@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Counter() {
+export default function App() {
   let [count, setCount] = useState(0);
   return (
     <div className="text-center h1">
