@@ -14,12 +14,14 @@ const App = () => {
 
   const btnAddHandler = () => {
     if (inputValue !== "") {
-      let array = inputValue.split(",");
-      array = array.map(
-        (el) =>
-          el !== "" && { itemName: el.trim().toLowerCase(), isSelected: false }
-      );
-      const newItems = [...items, ...array];
+      let array = inputValue
+        .split(",")
+        .reverse()
+        .filter((el) => el !== "")
+        .map((el) => {
+          return { itemName: el.trim().toLowerCase(), isSelected: false };
+        });
+      const newItems = [...array, ...items];
       setItems(newItems);
       setInputValue("");
     }
